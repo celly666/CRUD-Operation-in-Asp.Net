@@ -17,10 +17,10 @@ public partial class _Default : Page
         }
     }
     SqlConnection con = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=ProgrammingDB;Integrated Security=True");
+    
+ // insert button
     protected void Button1_Click(object sender, EventArgs e)
     {
-
-       
         con.Open();
         SqlCommand comm = new SqlCommand("Insert into StudentInfo_Tab values('"+int.Parse(TextBox1.Text)+"','"+TextBox2.Text+"','"+DropDownList1.SelectedValue+"','"+double.Parse(TextBox4.Text)+"','"+TextBox5.Text+"')",con);
         comm.ExecuteNonQuery();
@@ -28,7 +28,7 @@ public partial class _Default : Page
         ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Inserted');", true);
         LoadRecord();
     }
-
+// data gridview
     void LoadRecord()
     {
         SqlCommand comm = new SqlCommand("select * from StudentInfo_Tab", con);
@@ -38,7 +38,7 @@ public partial class _Default : Page
         GridView1.DataSource = dt;
         GridView1.DataBind();
     }
-
+// update button
     protected void Button2_Click(object sender, EventArgs e)
     {
         con.Open();
@@ -48,7 +48,7 @@ public partial class _Default : Page
         ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Updated');", true);
         LoadRecord();
     }
-
+// delete button
     protected void Button3_Click(object sender, EventArgs e)
     {
         con.Open();
@@ -58,7 +58,7 @@ public partial class _Default : Page
         ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Successfully Deleted');", true);
         LoadRecord();
     }
-
+// search button
     protected void Button4_Click(object sender, EventArgs e)
     {
         SqlCommand comm = new SqlCommand("select * from StudentInfo_Tab where StudentID ='" + int.Parse(TextBox1.Text) + "'", con);
@@ -68,7 +68,7 @@ public partial class _Default : Page
         GridView1.DataSource = dt;
         GridView1.DataBind();
     }
-
+// get button
     protected void Button5_Click(object sender, EventArgs e)
     {
         con.Open();
